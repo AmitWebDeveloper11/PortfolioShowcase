@@ -480,6 +480,41 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileCloseBtn = document.getElementById('mobile-close-btn');
+    const mobileNavLinks = mobileNav.querySelectorAll('a');
+
+    // Open mobile menu
+    mobileMenuBtn.addEventListener('click', function() {
+        mobileNav.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    });
+
+    // Close mobile menu
+    mobileCloseBtn.addEventListener('click', function() {
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    });
+
+    // Close menu when a nav link is clicked
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileNav.classList.remove('open');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+    });
+
+    // Close menu on outside click
+    document.addEventListener('click', function(e) {
+        if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileNav.classList.contains('open')) {
+            mobileNav.classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
         // Project data for 75 portfolio items
         const projects = [
             // Web Design Projects (20)
