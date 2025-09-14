@@ -1,15 +1,4 @@
 
-## 🛠️ Installation
-
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-   
-2. Start the server:
-   ```bash
-   npm start
-   ```
 # Creator Amit Pandey 
 
 > **"Not just a Developer — A Creator of Dark, Futuristic, and Glowing Web Experiences."**
