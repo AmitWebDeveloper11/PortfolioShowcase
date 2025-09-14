@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio Showcase - Creative Professional Work</title>
-    <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
     <link rel="stylesheet" href="../css/main.css" />
     <meta name="description" content="Explore 75 creative projects showcasing professional design and development work with interactive animations" />
     <style>
@@ -570,9 +570,6 @@
         const portfolioGrid = document.getElementById('portfolio-grid');
         const loadingSkeleton = document.getElementById('loading-skeleton');
         const projectModal = document.getElementById('project-modal');
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileNav = document.getElementById('mobile-nav');
-        const mobileCloseBtn = document.getElementById('mobile-close-btn');
 
         // Initialize portfolio
         function initPortfolio() {
@@ -605,7 +602,7 @@
                 <div class="aspect-w-16 aspect-h-10 overflow-hidden">
                     <img src="${project.image}" 
                          alt="${project.title}" 
-                         class="w-full h-48 sm:h-64 object-cover transition-transform duration-300 active:scale-105"
+                         class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
                          loading="lazy"
                          onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
                 </div>
@@ -618,13 +615,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                         </svg>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-semibold text-text-primary mb-2 line-clamp-2">${project.title}</h3>
-                    <p class="text-text-secondary text-sm sm:text-base line-clamp-3 mb-4">${project.description}</p>
-                    <div class="flex items-center space-x-2 flex-wrap">
+                    <h3 class="text-xl font-semibold text-text-primary mb-2 line-clamp-2">${project.title}</h3>
+                    <p class="text-text-secondary text-sm line-clamp-3 mb-4">${project.description}</p>
+                    <div class="flex items-center space-x-2">
                         ${project.tech.slice(0, 2).map(tech => 
-                            `<span class="px-2 py-1 bg-secondary-100 text-secondary-600 rounded text-xs sm:text-sm">${tech}</span>`
+                            `<span class="px-2 py-1 bg-secondary-100 text-secondary-600 rounded text-xs">${tech}</span>`
                         ).join('')}
-                        ${project.tech.length > 2 ? `<span class="text-xs sm:text-sm text-secondary-400">+${project.tech.length - 2} more</span>` : ''}
+                        ${project.tech.length > 2 ? `<span class="text-xs text-secondary-400">+${project.tech.length - 2} more</span>` : ''}
                     </div>
                 </div>
             `;
@@ -643,7 +640,7 @@
             modalImage.innerHTML = `
                 <img src="${project.image}" 
                      alt="${project.title}" 
-                     class="w-full h-64 sm:h-80 object-cover rounded-lg"
+                     class="w-full h-64 lg:h-80 object-cover rounded-lg"
                      onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
             `;
             
@@ -698,30 +695,6 @@
             });
         }
 
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            mobileNav.classList.toggle('open');
-            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : 'auto';
-        }
-
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        mobileCloseBtn.addEventListener('click', toggleMobileMenu);
-
-        // Close mobile menu when clicking a link
-        mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('open');
-                document.body.style.overflow = 'auto';
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileNav.classList.contains('open')) {
-                toggleMobileMenu();
-            }
-        });
-
         // Filter button event listeners
         document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('section button');
@@ -746,12 +719,10 @@
             initPortfolio();
         });
 
-        // Close modal and mobile menu on escape key
+        // Close modal on escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
-                mobileNav.classList.remove('open');
-                document.body.style.overflow = 'auto';
             }
         });
 
@@ -769,6 +740,5 @@
             });
         });
     </script>
-    <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
 </body>
 </html>
